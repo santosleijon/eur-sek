@@ -1,0 +1,21 @@
+{
+  "name": "sek-eur",
+  "version": "0.0.1",
+  "description": "Website that displays the currency rate between Swedish krona (SEK) and the euro (EUR), as determined by the Swedish central bank.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Santos Leijon <santos.bostrom.leijon@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/santosleijon/sek-eur.git"
+  },
+  "dependencies": {
+    "easy-soap-request": "^3.3.2",
+    "express": "^4.17.1",
+    "fast-xml-parser": "^3.17.4"
+  }
+}
