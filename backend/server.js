@@ -2,7 +2,7 @@ import express from 'express';
 import fetchExhangeRate from './swedish-central-bank-api.js';
 
 const server = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3080;
 
 server.get("/api/exchange-rate", async (_request, response) => {
     console.log("GET /api/exchange-rate called");
