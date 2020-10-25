@@ -16,7 +16,7 @@ const fetchExhangeRate = async () => {
     const { response } = await soapRequest({
         url: 'http://swea.riksbank.se/sweaWS/services/SweaWebServiceHttpSoap12Endpoint',
         headers: {
-            'User-Agent': 'sek-eur.se',
+            'User-Agent': 'eur-sek',
             'Content-Type': 'application/soap+xml;charset=UTF-8',
             'action': 'urn:getInterestAndExchangeRates',
         },

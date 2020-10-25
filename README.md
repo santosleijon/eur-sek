@@ -1,4 +1,4 @@
-# sek-eur
+# eur-sek
 
 This is a website that displays the currency rate between Swedish krona (SEK) and the euro (EUR), as determined by the Swedish central bank. It contains a backend with a REST API endpoint built using Node.js and a web based frontend built using React.
 

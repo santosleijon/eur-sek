@@ -1,7 +1,7 @@
 {
-  "name": "sek-eur",
+  "name": "eur-sek-backend",
   "version": "0.0.1",
-  "description": "Website that displays the currency rate between Swedish krona (SEK) and the euro (EUR), as determined by the Swedish central bank.",
+  "description": "Backend for a website that displays the currency rate between Swedish krona (SEK) and the euro (EUR), as determined by the Swedish central bank.",
   "main": "server.js",
   "type": "module",
   "scripts": {
@@ -11,7 +11,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/santosleijon/sek-eur.git"
+    "url": "https://github.com/santosleijon/eur-sek.git"
   },
   "dependencies": {
     "easy-soap-request": "^3.3.2",
