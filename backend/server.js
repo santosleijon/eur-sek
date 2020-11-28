@@ -2,8 +2,16 @@ import express from 'express';
 import fetchExhangeRate from './swedish-central-bank-api.js';
 
 const server = express();
-const PORT = process.env.PORT || 3080;
+const PORT = process.env.PORT || 3001;
+const ALLOWED_CORS_ORIGIN = process.env.ALLOWED_CORS_ORIGIN || 'http://localhost:3000';
 
+// Update CORS header to allow requests from specific frontend server
+server.use((_req, res, next) => {
+  res.header('Access-Control-Allow-Origin', ALLOWED_CORS_ORIGIN);
+  next();
+});
+
+// API endpoint for exchange rate fetching
 server.get("/api/exchange-rate", async (_request, response) => {
     console.log("GET /api/exchange-rate called");
 
@@ -20,9 +28,9 @@ server.get("/api/exchange-rate", async (_request, response) => {
     }
 });
 
+// Return 404 error for all other requests
 server.use(function(request, response, next) {
     response.status(404);
-    response.send('Error: 404 Not Found');
     console.error("Error: 404 Not Found: %s %s", request.method, request.url);
     next();
 });
