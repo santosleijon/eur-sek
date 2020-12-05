@@ -7,14 +7,11 @@ const fetchExhangeRate = async () => {
     // The Swedish Central Bank only publishes exchange rates for weekdays afternoon, so the rate from the previous weekday is retrieved
     const date = getPreviousWeekdayDate();
     
-    const localDate = date.toLocaleDateString("sv-SE", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    });
+    // Format as yyyy-mm-dd
+    const localDate = date.toISOString().slice(0,10);
 
     const { response } = await soapRequest({
-        url: 'http://swea.riksbank.se/sweaWS/services/SweaWebServiceHttpSoap12Endpoint',
+        url: 'https://swea.riksbank.se/sweaWS/services/SweaWebServiceHttpSoap12Endpoint',
         headers: {
             'User-Agent': 'eur-sek',
             'Content-Type': 'application/soap+xml;charset=UTF-8',
@@ -51,7 +48,7 @@ const fetchExhangeRate = async () => {
         if (j2xParser.validate(body) == true) {
             const parsedResponseBody = j2xParser.parse(body);
             const date = parsedResponseBody['SOAP-ENV:Envelope']['SOAP-ENV:Body']['ns0:getInterestAndExchangeRatesResponse']['return']['groups']['series']['resultrows']['date'];
-            const value = parsedResponseBody['SOAP-ENV:Envelope']['SOAP-ENV:Body']['ns0:getInterestAndExchangeRatesResponse']['return']['groups']['series']['resultrows']['value'];
+            const value = Math.round((parsedResponseBody['SOAP-ENV:Envelope']['SOAP-ENV:Body']['ns0:getInterestAndExchangeRatesResponse']['return']['groups']['series']['resultrows']['value'] + Number.EPSILON) * 100) / 100
 
             const exchangeRate = {
                 currency: 'SEK/EUR',
