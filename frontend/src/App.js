@@ -7,10 +7,11 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [currencyRate, setCurrencyRate] = useState(0);
   const [currencyRateDate, setCurrencyRateDate] = useState(null);
+  const [currencyRateRetrievalDate, setCurrencyRateRetrievalDate] = useState(null);
 
   // Perform API call and update data variables from effect hook since they are "side effect" operations
   useEffect(() => {
-    fetch("http://localhost:3001/api/exchange-rate/")
+    fetch("http://localhost:3001/api/exchange-rate/") // TODO: Replace hard-coded URL with variable
       .then(res => res.json())
       .then(
         (result) => {
@@ -18,6 +19,7 @@ function App() {
           if (result.hasOwnProperty("value") && result.hasOwnProperty("date")) {
             setCurrencyRate(result.value);
             setCurrencyRateDate(result.date);
+            setCurrencyRateRetrievalDate(new Date().toISOString().slice(0,10));
           } else {
             var error = { message: "Invalid response from internal API (" + JSON.stringify(result) +")." };
             setError(error);
@@ -63,8 +65,9 @@ function App() {
           </p>
         </div>
         <div className="App-footer">
-          <a href="./" title="EUR/SEK currecy rate">eur-sek.com</a> &middot;
-          Rate as of <span id="App-currency-rate-date">{currencyRateDate}</span> from <a href="https://www.riksbank.se/en-gb/statistics/search-interest--exchange-rates/" title="Search interest & exchange rates - Sveriges Riksbank">Sveriges Riksbank</a> (retrieved <span className="App-currency-rate-retrieval-date">2020-11-08</span>)
+          <p>Rate as of <span id="App-currency-rate-date">{currencyRateDate}</span></p>
+          <p>Retrieved from <a href="https://www.riksbank.se/en-gb/statistics/search-interest--exchange-rates/" title="Search interest & exchange rates - Sveriges Riksbank">Sveriges Riksbank</a> on <span className="App-currency-rate-retrieval-date">{currencyRateRetrievalDate}</span></p>
+          <p><a href="./" title="EUR/SEK currecy rate"><strong>eur-sek.com</strong></a></p>
         </div>
       </div>
     );
@@ -72,50 +75,3 @@ function App() {
 }
 
 export default App;
-
-/*
-
-function MyComponent() {
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
-
-  // Note: the empty deps array [] means
-  // this useEffect will run once
-  // similar to componentDidMount()
-  useEffect(() => {
-    fetch("https://api.example.com/items")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setItems(result);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-  }, [])
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  } else if (!isLoaded) {
-    return <div>Loading...</div>;
-  } else {
-    return (
-      <ul>
-        {items.map(item => (
-          <li key={item.name}>
-            {item.name} {item.price}
-          </li>
-        ))}
-      </ul>
-    );
-  }
-}
-
-*/
