@@ -4,7 +4,17 @@ A simple website that displays the currency rate between Swedish krona (SEK) and
 
 ## Getting started
 
-### Start backend at http://localhost:3001/
+### Starting the application using Docker
+
+Start backend at http://localhost:3001/ and frontend at http://localhost:3000/
+
+```
+docker-compose up
+```
+
+### Starting the application without Docker
+
+Start backend at http://localhost:3001/
 
 ```
 cd backend
@@ -12,7 +22,7 @@ npm install
 node server.js
 ```
 
-### Start frontend at http://localhost:3000/
+Start frontend at http://localhost:3000/
 
 ```
 cd frontend
