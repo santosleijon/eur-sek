@@ -2,6 +2,8 @@
 
 A simple website that displays the currency rate between Swedish krona (SEK) and the euro (EUR), as determined by the Swedish central bank. It contains a backend with a REST API endpoint built using Node.js and a web based frontend built using React.
 
+![screenshot](https://github.com/santosleijon/eur-sek/blob/master/screenshot.png?raw=true)
+
 ## Getting started
 
 ### Starting the application using Docker
